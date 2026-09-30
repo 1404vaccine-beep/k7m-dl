@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>스타 쇼츠 · 다운로드</title>
+<link rel="icon" href="icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #f6f7fb; --card: #fff; --line: #e4e7ee; --text: #1b1f27; --sub: #667085;
+          --main: #1f8fd0; --main2: #29A8E0; --yellow: #FFE600; --red: #ef4b3c; }
+  :root:not([data-theme="light"]) { color-scheme: light dark; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #12141a; --card: #1b1e26; --line: #2c313c; --text: #eceef3; --sub: #9aa1ad; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: "Noto Sans KR", sans-serif; line-height: 1.6; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 16px; }
+  header { background: #0f1115; color: #fff; }
+  .hero { padding: 56px 0 44px; display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; }
+  .hero h1 { font-size: clamp(30px, 6vw, 46px); margin: 0 0 8px; font-weight: 800; letter-spacing: -1px; }
+  .hero h1 span { color: var(--main2); }
+  .hero p { margin: 0 0 22px; color: #c7ccd6; font-size: 17px; }
+  .hero img { width: 120px; height: 120px; border-radius: 28px; box-shadow: 0 12px 40px rgba(41,168,224,.35); }
+  .dl { display: inline-flex; align-items: center; gap: 10px; background: var(--yellow); color: #111; font-weight: 800; font-size: 18px;
+        padding: 14px 26px; border-radius: 12px; text-decoration: none; box-shadow: 0 6px 20px rgba(255,230,0,.25); }
+  .dl:hover { transform: translateY(-1px); }
+  .meta { margin-top: 12px; font-size: 13px; color: #9aa1ad; }
+  section { padding: 34px 0 6px; }
+  h2 { font-size: 22px; margin: 0 0 14px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
+  .card b { display: block; font-size: 16px; margin-bottom: 4px; }
+  .card span { color: var(--sub); font-size: 14px; }
+  ol.steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  ol.steps li { counter-increment: s; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px 14px 56px; position: relative; }
+  ol.steps li::before { content: counter(s); position: absolute; left: 16px; top: 13px; width: 28px; height: 28px; border-radius: 50%;
+                        background: var(--main); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+  .note { background: #fff6d6; color: #5a4700; border: 1px solid #f3dc86; border-radius: 12px; padding: 12px 16px; font-size: 14px; }
+  .rel { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; margin-bottom: 10px; }
+  .rel .top { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  .rel .ver { font-weight: 800; }
+  .rel .date { color: var(--sub); font-size: 13px; }
+  .rel pre { white-space: pre-wrap; font-family: inherit; margin: 8px 0 0; color: var(--sub); font-size: 14px; }
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; margin-bottom: 8px; }
+  summary { cursor: pointer; font-weight: 600; }
+  details p { margin: 8px 0 0; color: var(--sub); font-size: 14px; }
+  footer { padding: 40px 0; color: var(--sub); font-size: 13px; text-align: center; }
+  code { background: rgba(127,127,127,.15); padding: 1px 6px; border-radius: 5px; }
+  @media (max-width: 640px) { .hero { grid-template-columns: 1fr; } .hero img { width: 84px; height: 84px; order: -1; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap hero">
+    <div>
+      <h1>🌟 스타 <span>쇼츠</span></h1>
+      <p>기사·인스타·유튜브에서 소식을 모아 <b>대본 → 영상 재료 → 편집 → 표지</b>까지<br>연예인 팬 쇼츠를 내 컴퓨터에서 자동으로 만들어요.</p>
+      <a class="dl" id="dlBtn" href="https://github.com/1404vaccine-beep/k7m-dl/releases/latest/download/StarShorts_Setup.exe">⬇ 윈도우용 다운로드</a>
+      <div class="meta" id="dlMeta">Windows 10 / 11 · 무료</div>
+    </div>
+    <img src="icon.png" alt="">
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <h2>이런 걸 해요</h2>
+    <div class="cards">
+      <div class="card"><b>✍️ 대본·제목</b><span>기사·인스타·사진으로 기획 가이드와 1분 대본, 위 두 줄 제목까지</span></div>
+      <div class="card"><b>🎬 영상 재료</b><span>유튜브 영상에서 주인공 얼굴이 나오는 장면만 골라 클립으로</span></div>
+      <div class="card"><b>📸 사진 수집</b><span>최근 기사 사진 중 그 연예인 얼굴이 크게 나온 것만</span></div>
+      <div class="card"><b>✂️ 캡컷 느낌 편집</b><span>AI 목소리 + 말하는 단어 강조 자막 + 댓글 카드 + 표지</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>설치 방법</h2>
+    <ol class="steps">
+      <li>위 <b>⬇ 윈도우용 다운로드</b>를 눌러 <code>StarShorts_Setup.exe</code> 를 받아요</li>
+      <li>받은 파일을 더블클릭 → <b>설치</b> (1~2분)<br>
+        <span class="note" style="display:inline-block; margin-top:8px">파란 창 “Windows의 PC 보호”가 뜨면 <b>추가 정보 → 실행</b>을 눌러주세요</span></li>
+      <li>바탕화면 <b>🌟 스타 쇼츠</b> 아이콘을 더블클릭하면 크롬에 프로그램이 열려요 (<code>127.0.0.1:5252</code>)</li>
+      <li>오른쪽 위 <b>⚙️ 설정</b>에서 <b>제미나이 API 키</b>를 넣으면 끝!</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>업데이트 소식</h2>
+    <div class="hint" style="color:var(--sub); font-size:14px; margin-bottom:10px">새 버전이 나오면 프로그램 화면 위에 알림이 뜨고, 버튼 한 번으로 업데이트돼요.</div>
+    <div id="releases"><div class="rel">불러오는 중…</div></div>
+  </section>
+
+  <section>
+    <h2>자주 묻는 질문</h2>
+    <details><summary>내 작업이 다른 사람 컴퓨터로 가나요?</summary>
+      <p>아니요. 프로그램은 <b>각자 컴퓨터에서만</b> 돌아가요. 키·로그인·만든 영상은 모두 내 컴퓨터에만 저장돼요.</p></details>
+    <details><summary>무엇이 필요한가요?</summary>
+      <p>윈도우 10/11 컴퓨터와 인터넷, 그리고 무료로 받을 수 있는 <b>제미나이 API 키</b>가 필요해요. 목소리는 무료 AI 목소리가 기본이고, 타입캐스트 키가 있으면 더 다양한 목소리를 쓸 수 있어요.</p></details>
+    <details><summary>처음 켤 때 느려요</summary>
+      <p>처음 한 번은 얼굴 인식 모델과 필요한 도구를 뒤에서 받느라 시간이 조금 걸려요. 다음부터는 빨라요.</p></details>
+    <details><summary>저작권은 괜찮나요?</summary>
+      <p>다른 사람 영상·사진을 쓸 때는 각 플랫폼 규칙과 저작권을 꼭 지켜주세요. 유튜브 검색의 “재사용 허용만” 필터를 쓰면 더 안전해요. 워터마크 지우기 같은 기능은 넣지 않았어요.</p></details>
+  </section>
+</main>
+
+<footer>🌟 스타 쇼츠 · 모든 작업은 내 컴퓨터에서</footer>
+
+<script>
+const REPO = "1404vaccine-beep/k7m-dl";
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+fetch(`https://api.github.com/repos/${REPO}/releases`).then(r => r.json()).then(list => {
+  if (!Array.isArray(list) || !list.length) { document.getElementById("releases").innerHTML = '<div class="rel">아직 소식이 없어요</div>'; return; }
+  const latest = list[0], a = (latest.assets || []).find(x => x.name === "StarShorts_Setup.exe");
+  if (a) document.getElementById("dlMeta").textContent = `최신 ${latest.tag_name} · ${(a.size / 1048576).toFixed(0)}MB · Windows 10 / 11 · 무료`;
+  document.getElementById("releases").innerHTML = list.slice(0, 8).map(r => `
+    <div class="rel"><div class="top"><span class="ver">${esc(r.tag_name)} ${esc(r.name && r.name !== r.tag_name ? "· " + r.name : "")}</span>
+      <span class="date">${new Date(r.published_at).toLocaleDateString("ko-KR")}</span></div>
+      <pre>${esc(r.body || "")}</pre></div>`).join("");
+}).catch(() => { document.getElementById("releases").innerHTML = '<div class="rel">소식을 불러오지 못했어요</div>'; });
+</script>
+</body>
+</html>
