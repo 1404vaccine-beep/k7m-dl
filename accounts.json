@@ -1,0 +1,25 @@
+{
+ "note": "스타 쇼츠 로그인 계정 (비밀번호는 암호화된 값만)",
+ "accounts": [
+  {
+   "id": "admin1",
+   "hash": "5848d28a81c5ced43c12dd3420cdefd74f365318961e600d64a3a03e871ac934"
+  },
+  {
+   "id": "admin2",
+   "hash": "9b2ac41199babf2c563c8d07f3c9efdbd9b5d40be219995d6aa9a519929fdb2a"
+  },
+  {
+   "id": "admin3",
+   "hash": "990660b4a6ce91c744dd85bf88fd70053d0125a08391cb0f001824bd807f8c0d"
+  },
+  {
+   "id": "admin4",
+   "hash": "93ff48e9fe82d2e0eb4579408634591017a66661fde48dc96644dac41fbba8f8"
+  },
+  {
+   "id": "admin5",
+   "hash": "219baa988b3e140652ca86de72ecc5386ec0c2671ab69a323d199606acc34bce"
+  }
+ ]
+}
