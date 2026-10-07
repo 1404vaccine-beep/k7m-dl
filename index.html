@@ -4,123 +4,321 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>스타 쇼츠 · 다운로드</title>
+<title>스타 쇼츠 — 연예인 팬 쇼츠 자동화</title>
+<meta name="description" content="기사 한 줄이면 팬 쇼츠 한 편. 대본·영상 재료·자막·목소리·업로드까지 내 컴퓨터에서 자동으로.">
 <link rel="icon" href="icon.png">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-  :root { --bg: #f6f7fb; --card: #fff; --line: #e4e7ee; --text: #1b1f27; --sub: #667085;
-          --main: #1f8fd0; --main2: #29A8E0; --yellow: #FFE600; --red: #ef4b3c; }
-  :root:not([data-theme="light"]) { color-scheme: light dark; }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) { --bg: #12141a; --card: #1b1e26; --line: #2c313c; --text: #eceef3; --sub: #9aa1ad; }
+  :root {
+    --bg: #050608; --card: #0f1116; --card2: #151821; --line: #232734; --text: #f3f4f7; --sub: #9aa1b1; --dim: #6b7282;
+    --rain: linear-gradient(90deg, #ffd36b 0%, #ff8ec7 38%, #a99bff 66%, #7fe3ff 100%);
+    --silver: linear-gradient(180deg, #ffffff 0%, #b9bfcc 100%);
   }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--text); font-family: "Noto Sans KR", sans-serif; line-height: 1.6; }
-  .wrap { max-width: 920px; margin: 0 auto; padding: 0 16px; }
-  header { background: #0f1115; color: #fff; }
-  .hero { padding: 56px 0 44px; display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; }
-  .hero h1 { font-size: clamp(30px, 6vw, 46px); margin: 0 0 8px; font-weight: 800; letter-spacing: -1px; }
-  .hero h1 span { color: var(--main2); }
-  .hero p { margin: 0 0 22px; color: #c7ccd6; font-size: 17px; }
-  .hero img { width: 120px; height: 120px; border-radius: 28px; box-shadow: 0 12px 40px rgba(41,168,224,.35); }
-  .dl { display: inline-flex; align-items: center; gap: 10px; background: var(--yellow); color: #111; font-weight: 800; font-size: 18px;
-        padding: 14px 26px; border-radius: 12px; text-decoration: none; box-shadow: 0 6px 20px rgba(255,230,0,.25); }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", sans-serif;
+         line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+  /* ── 위쪽 메뉴 ── */
+  nav { position: sticky; top: 0; z-index: 20; background: rgba(5,6,8,.72); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,.04); }
+  nav .wrap { display: flex; align-items: center; gap: 28px; height: 68px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; text-decoration: none; letter-spacing: -.3px; }
+  .brand img { width: 32px; height: 32px; border-radius: 9px; }
+  .brand b { background: var(--rain); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .menu { display: flex; gap: 26px; flex: 1; justify-content: center; }
+  .menu a { text-decoration: none; color: var(--sub); font-size: 15px; }
+  .menu a:hover { color: #fff; }
+  .navbtn { margin-left: auto; background: #fff; color: #000; text-decoration: none; font-weight: 700; font-size: 14px; padding: 10px 18px; border-radius: 999px; white-space: nowrap; }
+
+  /* ── 첫 화면 ── */
+  .hero { position: relative; text-align: center; padding: 84px 0 40px; }
+  .hero::before { content: ""; position: absolute; inset: -120px 0 auto; height: 620px; pointer-events: none;
+                  background: radial-gradient(600px 300px at 30% 30%, rgba(255,142,199,.16), transparent 70%),
+                              radial-gradient(600px 320px at 72% 40%, rgba(127,227,255,.14), transparent 70%); }
+  .pill { position: relative; display: inline-flex; align-items: center; gap: 8px; background: #12141b; border: 1px solid var(--line);
+          border-radius: 999px; padding: 8px 16px; font-size: 14px; font-weight: 600; color: #dfe3ec; }
+  h1 { position: relative; margin: 26px 0 18px; font-size: clamp(38px, 7.2vw, 76px); line-height: 1.12; font-weight: 800; letter-spacing: -2px; }
+  h1 .l1 { background: var(--silver); -webkit-background-clip: text; background-clip: text; color: transparent; display: block; }
+  h1 .l2 { background: var(--rain); -webkit-background-clip: text; background-clip: text; color: transparent; display: block; }
+  .lead { position: relative; color: #c9cedb; font-size: clamp(16px, 2.2vw, 20px); margin: 0 auto 38px; max-width: 640px; }
+
+  .cta { position: relative; max-width: 680px; margin: 0 auto; }
+  .cta .glow { position: absolute; inset: 18px 40px -10px; filter: blur(38px); opacity: .75; border-radius: 30px;
+               background: linear-gradient(90deg, rgba(255,211,107,.55), rgba(255,142,199,.55), rgba(127,227,255,.55)); animation: breathe 4s ease-in-out infinite; }
+  @keyframes breathe { 50% { opacity: .45; transform: scale(.98); } }
+  .cta .box { position: relative; background: #0d0f14; border: 1px solid #262b38; border-radius: 22px; padding: 10px; }
+  .dl { display: flex; align-items: center; justify-content: center; gap: 12px; background: #fff; color: #000; text-decoration: none;
+        font-size: 19px; font-weight: 800; padding: 19px 22px; border-radius: 15px; transition: transform .15s; }
   .dl:hover { transform: translateY(-1px); }
-  .meta { margin-top: 12px; font-size: 13px; color: #9aa1ad; }
-  section { padding: 34px 0 6px; }
-  h2 { font-size: 22px; margin: 0 0 14px; }
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; }
-  .card b { display: block; font-size: 16px; margin-bottom: 4px; }
-  .card span { color: var(--sub); font-size: 14px; }
-  ol.steps { counter-reset: s; list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-  ol.steps li { counter-increment: s; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px 14px 56px; position: relative; }
-  ol.steps li::before { content: counter(s); position: absolute; left: 16px; top: 13px; width: 28px; height: 28px; border-radius: 50%;
-                        background: var(--main); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 14px; }
-  .note { background: #fff6d6; color: #5a4700; border: 1px solid #f3dc86; border-radius: 12px; padding: 12px 16px; font-size: 14px; }
-  .rel { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; margin-bottom: 10px; }
+  .dl svg { width: 22px; height: 22px; }
+  .meta { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; color: var(--dim); font-size: 13.5px; padding: 12px 6px 4px; }
+  .meta span::before { content: "• "; color: #3c4252; }
+  .meta span:first-child::before { content: ""; }
+
+  /* ── 흐름 그림 ── */
+  .flow { position: relative; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 64px auto 0; max-width: 980px; }
+  .node { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; min-width: 132px; text-align: center; }
+  .node .ic { font-size: 26px; }
+  .node b { display: block; font-size: 15px; margin-top: 2px; }
+  .node span { color: var(--dim); font-size: 12.5px; }
+  .arrow { color: #4a5163; font-size: 20px; letter-spacing: -2px; }
+
+  /* ── 쇼츠 화면 예시 (그림으로) ── */
+  .phones { display: flex; justify-content: center; gap: 22px; margin: 70px auto 0; perspective: 1200px; }
+  .phone { width: 210px; aspect-ratio: 9/16; border-radius: 26px; overflow: hidden; position: relative; border: 1px solid #2a2f3d;
+           box-shadow: 0 30px 60px rgba(0,0,0,.6), 0 0 0 6px #0b0c10; background: #000; flex: none; }
+  .phone:nth-child(1) { transform: rotateY(14deg) rotateZ(-3deg) translateY(18px); }
+  .phone:nth-child(3) { transform: rotateY(-14deg) rotateZ(3deg) translateY(18px); }
+  .phone .top { height: 21%; background: #000; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; padding: 0 8px; }
+  .phone .t1 { font-weight: 800; font-size: 15px; color: #fff; text-align: center; line-height: 1.2; }
+  .phone .t1 em { font-style: normal; color: #ff4b45; }
+  .phone .t2 { font-weight: 800; font-size: 14px; color: #3fe3ee; text-align: center; line-height: 1.2; }
+  .phone .scene { position: absolute; left: 0; right: 0; top: 21%; bottom: 0; }
+  .phone .sub { position: absolute; left: 0; right: 0; bottom: 31%; text-align: center; font-weight: 800; font-size: 15px; color: #fff; line-height: 1.35;
+                text-shadow: 0 0 3px #000, 0 0 3px #000, 0 2px 4px #000; }
+  .phone .sub em { font-style: normal; color: #ffe600; }
+  .phone .cmt { position: absolute; left: 7%; right: 7%; bottom: 7%; background: rgba(0,0,0,.82); border-radius: 10px; padding: 8px 9px; font-size: 10.5px; line-height: 1.4; color: #eee; }
+  .phone .cmt i { display: inline-block; width: 16px; height: 16px; border-radius: 50%; background: #6a8cff; vertical-align: -4px; margin-right: 5px; filter: blur(.4px); }
+  .phone .cmt small { display: block; color: #aaa; margin-top: 3px; font-size: 9.5px; }
+  .s1 { background: radial-gradient(circle at 50% 35%, #ffb36b 0, #b8325c 45%, #2a0b2e 100%); }
+  .s2 { background: radial-gradient(circle at 50% 40%, #7fd2ff 0, #3157c9 45%, #0b1030 100%); }
+  .s3 { background: radial-gradient(circle at 50% 38%, #c6ff9e 0, #2f9a76 45%, #071d1a 100%); }
+  .s1::after, .s2::after, .s3::after { content: ""; position: absolute; left: 50%; top: 14%; width: 46%; aspect-ratio: 1; transform: translateX(-50%);
+            border-radius: 50%; background: radial-gradient(circle at 40% 35%, rgba(255,255,255,.55), rgba(255,255,255,.08) 70%); filter: blur(1px); }
+
+  /* ── 섹션 공통 ── */
+  section { padding: 110px 0 0; }
+  .eyebrow { text-align: center; color: #9fb3ff; font-weight: 700; font-size: 14px; letter-spacing: .5px; }
+  h2 { text-align: center; font-size: clamp(28px, 4.4vw, 44px); line-height: 1.25; margin: 10px 0 12px; letter-spacing: -1px; font-weight: 800; }
+  h2 .g { background: var(--rain); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .sec-lead { text-align: center; color: var(--sub); margin: 0 auto 46px; max-width: 620px; font-size: 16.5px; }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .step { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 22px 18px; position: relative; overflow: hidden; }
+  .step .n { width: 30px; height: 30px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px;
+             background: var(--rain); color: #111; }
+  .step h3 { margin: 14px 0 6px; font-size: 18px; }
+  .step p { margin: 0; color: var(--sub); font-size: 14px; }
+  .step .opt { position: absolute; top: 18px; right: 16px; font-size: 11px; color: var(--dim); border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px; }
+
+  .feats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .feat { background: linear-gradient(180deg, var(--card2), var(--card)); border: 1px solid var(--line); border-radius: 20px; padding: 24px 20px; transition: border-color .2s, transform .2s; }
+  .feat:hover { border-color: #3a4256; transform: translateY(-2px); }
+  .feat .ic { font-size: 28px; }
+  .feat h3 { font-size: 17px; margin: 12px 0 6px; }
+  .feat p { margin: 0; color: var(--sub); font-size: 14px; }
+
+  .local { display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px; align-items: center; background: linear-gradient(135deg, #10131b, #0b0d12);
+           border: 1px solid var(--line); border-radius: 28px; padding: 44px; }
+  .local h2 { text-align: left; margin-top: 0; }
+  .local p { color: var(--sub); margin: 0 0 8px; }
+  .local ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .local li { background: #0a0c11; border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; font-size: 15px; }
+  .local li b { color: #fff; }
+
+  .install { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; counter-reset: s; }
+  .install div { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px; counter-increment: s; font-size: 15px; color: #d7dbe5; }
+  .install div::before { content: counter(s); display: block; font-size: 30px; font-weight: 800; margin-bottom: 4px; background: var(--rain);
+                         -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .install code { background: #1a1e29; border-radius: 6px; padding: 1px 6px; font-size: 13px; }
+  .warn { margin-top: 14px; text-align: center; color: #e9cf7a; font-size: 14px; }
+
+  .rels { max-width: 760px; margin: 0 auto; display: grid; gap: 12px; }
+  .rel { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; }
   .rel .top { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
   .rel .ver { font-weight: 800; }
-  .rel .date { color: var(--sub); font-size: 13px; }
+  .rel .ver .new { background: var(--rain); color: #111; font-size: 11px; border-radius: 999px; padding: 1px 8px; margin-left: 6px; vertical-align: 2px; }
+  .rel .date { color: var(--dim); font-size: 13px; }
   .rel pre { white-space: pre-wrap; font-family: inherit; margin: 8px 0 0; color: var(--sub); font-size: 14px; }
-  details { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; margin-bottom: 8px; }
-  summary { cursor: pointer; font-weight: 600; }
-  details p { margin: 8px 0 0; color: var(--sub); font-size: 14px; }
-  footer { padding: 40px 0; color: var(--sub); font-size: 13px; text-align: center; }
-  code { background: rgba(127,127,127,.15); padding: 1px 6px; border-radius: 5px; }
-  @media (max-width: 640px) { .hero { grid-template-columns: 1fr; } .hero img { width: 84px; height: 84px; order: -1; } }
+  .more { display: block; margin: 6px auto 0; background: none; border: 1px solid var(--line); color: var(--sub); border-radius: 999px; padding: 8px 18px; cursor: pointer; font: inherit; }
+
+  .faq { max-width: 760px; margin: 0 auto; display: grid; gap: 10px; }
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px 20px; }
+  summary { cursor: pointer; font-weight: 700; list-style: none; display: flex; justify-content: space-between; gap: 10px; }
+  summary::after { content: "+"; color: var(--dim); font-size: 20px; line-height: 1; }
+  details[open] summary::after { content: "−"; }
+  details p { margin: 10px 0 0; color: var(--sub); font-size: 15px; }
+
+  .final { text-align: center; padding: 120px 0 40px; }
+  .final .cta { margin-top: 30px; }
+  footer { border-top: 1px solid #12151c; margin-top: 90px; padding: 30px 0 40px; color: var(--dim); font-size: 13px; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s, transform .7s; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (max-width: 960px) {
+    .menu { display: none; }
+    .steps { grid-template-columns: 1fr; }
+    .feats { grid-template-columns: 1fr 1fr; }
+    .install { grid-template-columns: 1fr 1fr; }
+    .local { grid-template-columns: 1fr; padding: 28px; }
+    .phone { width: 160px; }
+    .arrow { display: none; }
+  }
+  @media (max-width: 560px) {
+    .steps, .feats, .install { grid-template-columns: 1fr; }
+    .phones .phone:nth-child(1), .phones .phone:nth-child(3) { display: none; }
+    .phone { width: 220px; }
+    nav .wrap { gap: 10px; }
+  }
 </style>
 </head>
 <body>
-<header>
-  <div class="wrap hero">
-    <div>
-      <h1>🌟 스타 <span>쇼츠</span></h1>
-      <p>기사·인스타·유튜브에서 소식을 모아 <b>대본 → 영상 재료 → 편집 → 업로드</b>까지<br>연예인 팬 쇼츠를 내 컴퓨터에서 자동으로 만들어요.</p>
-      <a class="dl" id="dlBtn" href="https://github.com/1404vaccine-beep/k7m-dl/releases/latest/download/StarShorts_Setup.exe">⬇ 윈도우용 다운로드</a>
-      <div class="meta" id="dlMeta">Windows 10 / 11 · 무료</div>
+
+<nav><div class="wrap">
+  <a class="brand" href="#"><img src="icon.png" alt="">스타 <b>쇼츠</b></a>
+  <div class="menu"><a href="#how">사용 방법</a><a href="#features">기능</a><a href="#install">설치</a><a href="#updates">업데이트</a><a href="#faq">자주 묻는 질문</a></div>
+  <a class="navbtn" href="#download">무료 다운로드</a>
+</div></nav>
+
+<header class="hero" id="download"><div class="wrap">
+  <span class="pill">🎤 트로트 · 아이돌 · 배우 팬 쇼츠 자동화</span>
+  <h1><span class="l1">기사 한 줄이면</span><span class="l2">팬 쇼츠 한 편 완성</span></h1>
+  <p class="lead">대본 쓰기부터 영상 장면 자르기, 자막·목소리 편집, 유튜브 업로드까지.<br>내 컴퓨터에서 버튼 몇 번으로 끝나요.</p>
+  <div class="cta">
+    <div class="glow"></div>
+    <div class="box">
+      <a class="dl" id="dlBtn" href="https://github.com/1404vaccine-beep/k7m-dl/releases/latest/download/StarShorts_Setup.exe">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        윈도우용 무료 다운로드</a>
+      <div class="meta" id="dlMeta"><span>Windows 10 / 11</span><span>설치 1분</span><span>자동 업데이트</span></div>
     </div>
-    <img src="icon.png" alt="">
   </div>
-</header>
 
-<main class="wrap">
-  <section>
-    <h2>이런 걸 해요</h2>
-    <div class="cards">
-      <div class="card"><b>✍️ 대본·제목</b><span>기사·인스타·사진으로 기획 가이드와 1분 대본, 위 두 줄 제목까지</span></div>
-      <div class="card"><b>🎬 영상 재료</b><span>유튜브 영상에서 주인공 얼굴이 나오는 장면만 골라 클립으로</span></div>
-      <div class="card"><b>📸 사진 수집</b><span>최근 기사 사진 중 그 연예인 얼굴이 크게 나온 것만</span></div>
-      <div class="card"><b>✂️ 캡컷 느낌 편집</b><span>AI 목소리 + 말하는 단어 강조 자막 + 댓글 카드 + 표지</span></div>
-      <div class="card"><b>▶️ 유튜브 자동 업로드</b><span>제목·설명·태그를 채워서 올려줘요. 예약 공개도 돼요</span></div>
+  <div class="flow reveal">
+    <div class="node"><div class="ic">📰</div><b>기사·인스타</b><span>링크만 넣기</span></div><div class="arrow">···›</div>
+    <div class="node"><div class="ic">✍️</div><b>AI 대본</b><span>제목·훅까지</span></div><div class="arrow">···›</div>
+    <div class="node"><div class="ic">🎬</div><b>장면 자르기</b><span>얼굴 나온 곳만</span></div><div class="arrow">···›</div>
+    <div class="node"><div class="ic">✂️</div><b>자동 편집</b><span>자막·목소리·댓글</span></div><div class="arrow">···›</div>
+    <div class="node"><div class="ic">▶️</div><b>업로드</b><span>예약까지</span></div>
+  </div>
+
+  <div class="phones reveal">
+    <div class="phone"><div class="top"><div class="t1">무대 끝나고 <em>눈물</em></div><div class="t2">팬들이 울컥한 이유</div></div>
+      <div class="scene s1"></div><div class="sub">마지막 소절에서<br><em>결국</em> 목이 메었죠</div>
+      <div class="cmt"><i></i>노래 듣다가 저도 같이 울었어요<small>👍 382 · 답글</small></div></div>
+    <div class="phone"><div class="top"><div class="t1"><em>14곡</em> 동시 차트인</div><div class="t2">가요계 발칵 뒤집힌 순간</div></div>
+      <div class="scene s2"></div><div class="sub">그런데 진짜 <em>놀라운</em> 건<br>따로 있었습니다</div>
+      <div class="cmt"><i></i>역시 믿고 듣는 목소리입니다<small>👍 517 · 답글</small></div></div>
+    <div class="phone"><div class="top"><div class="t1">3년 만의 <em>정규 앨범</em></div><div class="t2">11곡 직접 만든 진짜 실력</div></div>
+      <div class="scene s3"></div><div class="sub">작사 작곡 편곡까지<br><em>직접</em> 해냈거든요</div>
+      <div class="cmt"><i></i>노래 하나하나 다 좋아요 최고<small>👍 214 · 답글</small></div></div>
+  </div>
+  <p style="text-align:center; color:var(--dim, #6b7282); font-size:12.5px; margin-top:14px">※ 위 화면은 만들어지는 모양을 보여주는 예시예요 (실제 기사·댓글 아님)</p>
+</div></header>
+
+<section id="how"><div class="wrap reveal">
+  <div class="eyebrow">HOW IT WORKS</div>
+  <h2>순서대로 따라가면 <span class="g">3단계로 끝</span></h2>
+  <p class="sec-lead">화면마다 <b>다음 →</b> 버튼만 누르면 돼요. 처음 써도 길을 잃지 않게 안내해 드려요.</p>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h3>재료·대본</h3><p>SNS 링크 · 기사 · 유튜브 영상 · 내 사진을 한 화면에 모아요. 유튜브 무대에선 주인공 얼굴이 나온 장면만 클립으로 잘라요. 다 모으면 AI가 1분 대본과 위 두 줄 제목을 써요.</p></div>
+    <div class="step"><div class="n">2</div><h3>편집</h3><p>모은 재료가 목소리 길이에 맞춰 알아서 깔려요. AI 목소리, 말하는 단어 강조 자막, 팬 댓글 카드, 효과음·배경음악, 표지까지.</p></div>
+    <div class="step"><div class="n">3</div><h3>업로드</h3><p>제목·설명·태그를 확인하고 버튼 한 번에 유튜브로. 예약 공개도 돼요.</p></div>
+  </div>
+</div></section>
+
+<section id="features"><div class="wrap reveal">
+  <div class="eyebrow">FEATURES</div>
+  <h2>팬 쇼츠에 필요한 건 <span class="g">다 들어 있어요</span></h2>
+  <p class="sec-lead">캡컷 느낌의 편집기에서 끌어서 옮기고, 더블클릭해서 바로 고치세요.</p>
+  <div class="feats">
+    <div class="feat"><div class="ic">🎙️</div><h3>자연스러운 AI 목소리</h3><p>무료 목소리부터 타입캐스트의 다양한 목소리까지. 영어는 읽는 법도 정할 수 있어요.</p></div>
+    <div class="feat"><div class="ic">💬</div><h3>말하는 단어 강조 자막</h3><p>목소리에 맞춰 지금 읽는 단어만 색이 바뀌어요. 긴 줄은 알아서 두 줄로.</p></div>
+    <div class="feat"><div class="ic">🗨️</div><h3>진짜 팬 댓글 카드</h3><p>유튜브의 실제 팬 댓글을 골라 영상 중간중간 띄워요. 지어낸 댓글은 쓰지 않아요.</p></div>
+    <div class="feat"><div class="ic">🎯</div><h3>얼굴 찾아 장면 자르기</h3><p>긴 무대 영상에서 주인공이 나온 곳만. 얼굴이 가운데 오게 맞춰요.</p></div>
+    <div class="feat"><div class="ic">🔊</div><h3>효과음·배경음악</h3><p>저작권 걱정 없는 기본 음악과 효과음. 효과음은 버튼 한 번에 자동 배치.</p></div>
+    <div class="feat"><div class="ic">🖼️</div><h3>표지(썸네일)</h3><p>얼굴 잘 나온 장면을 찾아 빛나는 테두리·후광까지 넣어 줘요.</p></div>
+    <div class="feat"><div class="ic">⏰</div><h3>예약 업로드</h3><p>1~1시간 반 뒤 자동 예약, 또는 원하는 시간에. 채널을 여러 개 써도 안 섞여요.</p></div>
+    <div class="feat"><div class="ic">🔄</div><h3>자동 업데이트</h3><p>켤 때 새 버전이 있으면 알아서 바꿔요. 다시 설치할 필요 없어요.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap reveal">
+  <div class="local">
+    <div>
+      <div class="eyebrow" style="text-align:left">PRIVATE</div>
+      <h2>모든 작업은<br><span class="g">내 컴퓨터에서만</span></h2>
+      <p>만든 영상, 키, 로그인은 서버로 가지 않아요. 프로그램이 각자 컴퓨터 안에서만 돌아가요.</p>
     </div>
-  </section>
+    <ul>
+      <li>🔑 <b>내 키로</b> — 제미나이(무료)·타입캐스트 키는 내 컴퓨터에만 저장</li>
+      <li>📁 <b>내 폴더에</b> — 대본·클립·완성 영상 모두 내 작업 폴더로</li>
+      <li>🙅 <b>지어내지 않기</b> — 없는 사실·가짜 발언·워터마크 지우기는 넣지 않았어요</li>
+    </ul>
+  </div>
+</div></section>
 
-  <section>
-    <h2>설치 방법</h2>
-    <ol class="steps">
-      <li>위 <b>⬇ 윈도우용 다운로드</b>를 눌러 <code>StarShorts_Setup.exe</code> 를 받아요</li>
-      <li>받은 파일을 더블클릭 → <b>설치</b> (1~2분)<br>
-        <span class="note" style="display:inline-block; margin-top:8px">파란 창 “Windows의 PC 보호”가 뜨면 <b>추가 정보 → 실행</b>을 눌러주세요</span></li>
-      <li>바탕화면 <b>🌟 스타 쇼츠</b> 아이콘을 더블클릭하면 크롬에 프로그램이 열려요 (<code>127.0.0.1:5252</code>)</li>
-      <li>처음 켜면 <b>로그인</b> 화면이 나와요 — 받은 <b>아이디·비밀번호</b>를 넣어주세요</li>
-      <li>첫 화면 안내대로 <b>⚙️ 설정</b>에서 <b>제미나이 API 키</b>와 <b>내 채널 이름</b>을 넣으면 끝!</li>
-    </ol>
-  </section>
+<section id="install"><div class="wrap reveal">
+  <div class="eyebrow">INSTALL</div>
+  <h2>설치는 <span class="g">1분이면 충분</span></h2>
+  <p class="sec-lead">받은 아이디·비밀번호가 있어야 쓸 수 있어요.</p>
+  <div class="install">
+    <div>위 <b>무료 다운로드</b>로 <code>StarShorts_Setup.exe</code> 받기</div>
+    <div>받은 파일을 더블클릭해서 <b>설치</b></div>
+    <div>바탕화면 <b>🌟 스타 쇼츠</b>를 켜고 받은 <b>아이디·비밀번호</b>로 로그인</div>
+    <div>첫 화면 안내대로 <b>제미나이 키</b>와 <b>내 채널 이름</b> 넣으면 끝!</div>
+  </div>
+  <div class="warn">파란 창 "Windows의 PC 보호"가 뜨면 <b>추가 정보 → 실행</b>을 눌러 주세요</div>
+</div></section>
 
-  <section>
-    <h2>업데이트 소식</h2>
-    <div class="hint" style="color:var(--sub); font-size:14px; margin-bottom:10px">새 버전이 나오면 프로그램 화면 위에 알림이 뜨고, 버튼 한 번으로 업데이트돼요.</div>
-    <div id="releases"><div class="rel">불러오는 중…</div></div>
-  </section>
+<section id="updates"><div class="wrap reveal">
+  <div class="eyebrow">UPDATES</div>
+  <h2>계속 <span class="g">좋아지고 있어요</span></h2>
+  <p class="sec-lead">새 버전이 나오면 프로그램을 켤 때 알아서 업데이트돼요.</p>
+  <div class="rels" id="releases"><div class="rel">불러오는 중…</div></div>
+  <button class="more" id="moreRel" style="display:none" onclick="showRel(99)">이전 업데이트 더 보기</button>
+</div></section>
 
-  <section>
-    <h2>자주 묻는 질문</h2>
-    <details><summary>내 작업이 다른 사람 컴퓨터로 가나요?</summary>
-      <p>아니요. 프로그램은 <b>각자 컴퓨터에서만</b> 돌아가요. 키·로그인·만든 영상은 모두 내 컴퓨터에만 저장돼요.</p></details>
-    <details><summary>무엇이 필요한가요?</summary>
-      <p>윈도우 10/11 컴퓨터와 인터넷, 그리고 무료로 받을 수 있는 <b>제미나이 API 키</b>가 필요해요. 목소리는 무료 AI 목소리가 기본이고, 타입캐스트 키가 있으면 더 다양한 목소리를 쓸 수 있어요.</p></details>
-    <details><summary>처음 켤 때 느려요</summary>
-      <p>처음 한 번은 얼굴 인식 모델과 필요한 도구를 뒤에서 받느라 시간이 조금 걸려요. 다음부터는 빨라요.</p></details>
-    <details><summary>저작권은 괜찮나요?</summary>
-      <p>다른 사람 영상·사진을 쓸 때는 각 플랫폼 규칙과 저작권을 꼭 지켜주세요. 유튜브 검색의 “재사용 허용만” 필터를 쓰면 더 안전해요. 워터마크 지우기 같은 기능은 넣지 않았어요.</p></details>
-  </section>
-</main>
+<section id="faq"><div class="wrap reveal">
+  <div class="eyebrow">FAQ</div>
+  <h2>자주 묻는 질문</h2>
+  <div class="faq" style="margin-top:36px">
+    <details><summary>내 작업이 다른 사람 컴퓨터로 가나요?</summary><p>아니요. 프로그램은 각자 컴퓨터에서만 돌아가요. 키·로그인·만든 영상은 모두 내 컴퓨터에만 저장돼요.</p></details>
+    <details><summary>무엇이 필요한가요?</summary><p>윈도우 10/11 컴퓨터, 인터넷, 무료로 받을 수 있는 제미나이 API 키가 필요해요. 목소리는 무료 AI 목소리가 기본이고, 타입캐스트 키가 있으면 더 다양한 목소리를 쓸 수 있어요. 유튜브에 올리려면 크롬이 있으면 좋아요.</p></details>
+    <details><summary>처음 켤 때 느려요</summary><p>처음 한 번은 얼굴 인식 모델과 필요한 도구를 뒤에서 받느라 시간이 조금 걸려요. 다음부터는 빨라요.</p></details>
+    <details><summary>프로그램 창이 안 보여요</summary><p>스타 쇼츠는 크롬 같은 브라우저 화면에서 열려요. 창을 닫았으면 작업 표시줄 오른쪽 아래(시계 옆) 🌟 아이콘을 누르면 다시 열려요. 끌 때는 아이콘을 오른쪽 클릭 → 프로그램 끄기.</p></details>
+    <details><summary>저작권은 괜찮나요?</summary><p>다른 사람 영상·사진을 쓸 때는 각 플랫폼 규칙과 저작권을 꼭 지켜 주세요. 유튜브 검색의 "재사용 허용만" 필터를 쓰면 더 안전해요. 워터마크 지우기 같은 기능은 넣지 않았어요.</p></details>
+  </div>
+</div></section>
 
-<footer>🌟 스타 쇼츠 · 모든 작업은 내 컴퓨터에서</footer>
+<div class="final wrap reveal">
+  <h2>오늘 첫 팬 쇼츠, <span class="g">지금 만들어 보세요</span></h2>
+  <div class="cta">
+    <div class="glow"></div>
+    <div class="box"><a class="dl" href="https://github.com/1404vaccine-beep/k7m-dl/releases/latest/download/StarShorts_Setup.exe">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+      윈도우용 무료 다운로드</a></div>
+  </div>
+</div>
+
+<footer><div class="wrap"><span>🌟 스타 쇼츠 · 모든 작업은 내 컴퓨터에서</span><span id="footVer"></span></div></footer>
 
 <script>
 const REPO = "1404vaccine-beep/k7m-dl";
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-fetch(`https://api.github.com/repos/${REPO}/releases`).then(r => r.json()).then(list => {
-  if (!Array.isArray(list) || !list.length) { document.getElementById("releases").innerHTML = '<div class="rel">아직 소식이 없어요</div>'; return; }
-  const latest = list[0], a = (latest.assets || []).find(x => x.name === "StarShorts_Setup.exe");
-  if (a) document.getElementById("dlMeta").textContent = `최신 ${latest.tag_name} · ${(a.size / 1048576).toFixed(0)}MB · Windows 10 / 11 · 무료`;
-  document.getElementById("releases").innerHTML = list.slice(0, 8).map(r => `
-    <div class="rel"><div class="top"><span class="ver">${esc(r.tag_name)} ${esc(r.name && r.name !== r.tag_name ? "· " + r.name : "")}</span>
+let RELS = [];
+function showRel(n) {
+  document.getElementById("releases").innerHTML = RELS.slice(0, n).map((r, i) => `
+    <div class="rel"><div class="top"><span class="ver">${esc(r.tag_name)}${i === 0 ? '<span class="new">최신</span>' : ""} ${esc(r.name && r.name !== r.tag_name ? "· " + r.name : "")}</span>
       <span class="date">${new Date(r.published_at).toLocaleDateString("ko-KR")}</span></div>
       <pre>${esc(r.body || "")}</pre></div>`).join("");
+  document.getElementById("moreRel").style.display = RELS.length > n ? "" : "none";
+}
+fetch(`https://api.github.com/repos/${REPO}/releases`).then(r => r.json()).then(list => {
+  if (!Array.isArray(list) || !list.length) { document.getElementById("releases").innerHTML = '<div class="rel">아직 소식이 없어요</div>'; return; }
+  RELS = list; showRel(3);
+  const latest = list[0], a = (latest.assets || []).find(x => x.name === "StarShorts_Setup.exe");
+  if (a) document.getElementById("dlMeta").innerHTML = `<span>최신 ${esc(latest.tag_name)}</span><span>${(a.size / 1048576).toFixed(0)}MB</span><span>Windows 10 / 11</span><span>자동 업데이트</span>`;
+  document.getElementById("footVer").textContent = "최신 버전 " + latest.tag_name;
 }).catch(() => { document.getElementById("releases").innerHTML = '<div class="rel">소식을 불러오지 못했어요</div>'; });
+
+// 내려가면 하나씩 부드럽게 나타나기
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .12 });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
 </script>
 </body>
 </html>
